@@ -5,9 +5,17 @@ import { Button } from "./components/button/Button";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [showMsg, setShowMsg] = useState(false);
 
   const updateCounter = (increase: boolean) => {
     setCount((currentValue) => {
+      if (currentValue === 0 && !increase) {
+        setShowMsg(true);
+        return currentValue;
+      }
+
+      if (showMsg && increase) setShowMsg(false);
+
       return increase ? currentValue + 1 : currentValue - 1;
     });
   };
@@ -31,6 +39,9 @@ function App() {
               Reset
             </Button>
           </div>
+          {showMsg && (
+            <div className="text-danger mt-4">Nem lehet kisebb nullanal</div>
+          )}
         </div>
       </div>
     </div>
