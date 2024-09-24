@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import HomePage from "./pages/HomePage/HomePage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 import BadgesPage from "./pages/BadgesPage/BadgesPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="home" element={<HomePage />} />
         <Route path="users" element={<UsersPage />} />
         <Route path="badges" element={<BadgesPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
