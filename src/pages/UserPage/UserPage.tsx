@@ -8,6 +8,7 @@ import { Page } from "../../components/page/Page";
 import { UserFormValues, UserModel } from "../../models/user.model";
 import { BadgeModel } from "../../models/badges.model";
 import TextField from "../../components/text-field/TextField";
+import ProfileImagePreview from "../../components/ProfileImagePreview/ProfileImagePreview";
 
 const schema = Yup.object({
   name: Yup.string().required(),
@@ -26,6 +27,7 @@ export const UserPage = () => {
     reset,
     setValue,
     getValues,
+    watch,
     formState: { errors },
   } = useForm<UserFormValues>({
     defaultValues: {
@@ -34,6 +36,8 @@ export const UserPage = () => {
     },
     resolver: yupResolver(schema),
   });
+
+  const imageUrl = watch("image");
 
   return (
     <Page title={user ? user.name : "User"}>
@@ -51,6 +55,7 @@ export const UserPage = () => {
           error={errors.image?.message}
         />
       </form>
+      <ProfileImagePreview imageUrl={imageUrl} />
     </Page>
   );
 };
